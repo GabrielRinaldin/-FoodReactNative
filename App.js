@@ -9,6 +9,7 @@ import Logado from './Views/Auth/logado';
 import EnderecoCreate from './Views/Endereco/endereco_create';
 import EnderecoList from './Views/Endereco/endereco_list';
 import DoacaoCreate from './Views/Doacao/Empresa/doacao_create';
+import DoacaoList from './Views/Doacao/Empresa/doacao_list';
 
 function Home({navigation}) {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Stack.Screen name="EnderecoCreate" component={EnderecoCreate} />
         <Stack.Screen name="EnderecoList" component={EnderecoList} />
         <Stack.Screen name="DoacaoCreate" component={DoacaoCreate} />
+        <Stack.Screen name="DoacaoList" component={DoacaoList} />
       </Stack.Navigator>
     </NavigationContainer>
   );
