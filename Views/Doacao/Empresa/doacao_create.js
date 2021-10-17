@@ -105,10 +105,6 @@ export default class DoacaoCreate extends React.Component {
           placeholder="Quantidade"
           onChangeText={value => this.setState({quantidade: value})}
           value={this.state.quantidade}></TextInput>
-        <TextInput
-          placeholder="Válidade"
-          onChangeText={value => this.setState({validade: value})}
-          value={this.state.validade}></TextInput>
 
         <DatePicker
           date={this.state.date}

@@ -101,6 +101,15 @@ export default class Logado extends React.Component {
                 })
               }
             />
+             <Button
+              title="Gerenciar Doações"
+              onPress={() =>
+                this.props.navigation.navigate('DoacaoList', {
+                  token: this.props.route.params.token,
+                  user_id: this.state.user.id,
+                })
+              }
+            />
           </View>
         )}
       </View>
