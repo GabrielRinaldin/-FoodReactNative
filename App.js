@@ -5,11 +5,14 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Login from './Views/Auth/login';
 import CadastroUsuario from './Views/Auth/cadastro_usuario';
 import CadastroEmpresa from './Views/Auth/cadastro_empresa';
-import Logado from './Views/Auth/logado';
 import EnderecoCreate from './Views/Endereco/endereco_create';
 import EnderecoList from './Views/Endereco/endereco_list';
 import DoacaoCreate from './Views/Doacao/Empresa/doacao_create';
 import DoacaoList from './Views/Doacao/Empresa/doacao_list';
+import Logado from './Views/UsuarioEmpresa/logado';
+import LogadoUsuario from './Views/UsuarioComum/logado_usuario';
+import ChecaUserTipo from './Views/Auth/checa_user_tipo';
+
 
 function Home({navigation}) {
   return (
@@ -37,10 +40,12 @@ function App() {
         <Stack.Screen name="CadastroEmpresa" component={CadastroEmpresa} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Logado" component={Logado} />
+        <Stack.Screen name="LogadoUsuario" component={LogadoUsuario} />
         <Stack.Screen name="EnderecoCreate" component={EnderecoCreate} />
         <Stack.Screen name="EnderecoList" component={EnderecoList} />
         <Stack.Screen name="DoacaoCreate" component={DoacaoCreate} />
         <Stack.Screen name="DoacaoList" component={DoacaoList} />
+        <Stack.Screen name="ChecaUserTipo" component={ChecaUserTipo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

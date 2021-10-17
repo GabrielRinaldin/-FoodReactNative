@@ -66,7 +66,7 @@ export default class Logado extends React.Component {
     return (
       <View>
         <Text>Id#: {this.state.user.id}</Text>
-        <Text>Nome: {this.state.user.name}</Text>
+        <Text>Nome: {this.state.user.nome}</Text>
         <Text>Email: {this.state.user.email}</Text>
         <Text>Tipo: {this.state.user.tipo_usuario}</Text>
         <Text>Celular: {this.state.user.celular}</Text>

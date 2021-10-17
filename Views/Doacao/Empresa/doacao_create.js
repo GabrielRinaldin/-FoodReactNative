@@ -107,9 +107,8 @@ export default class DoacaoCreate extends React.Component {
           value={this.state.quantidade}></TextInput>
 
         <DatePicker
-          date={this.state.date}
           mode="date"
-          placeholder="select date"
+          placeholder="selecione o prazo"
           format="YYYY-MM-DD"
           minDate={this.state.minDate}
           maxDate="2025-12-31"

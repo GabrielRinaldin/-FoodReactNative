@@ -32,7 +32,7 @@ export default class Login extends React.Component {
         this.setState({token: result.data.token});
       })
       .then(() => {
-        this.props.navigation.navigate('Logado', {token: this.state.token});
+        this.props.navigation.navigate('ChecaUserTipo', {token: this.state.token});
       })
       .catch(error => alert('error', error));
   }

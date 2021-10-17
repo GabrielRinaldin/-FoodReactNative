@@ -120,7 +120,7 @@ export default class DoacaoList extends React.Component {
           </View>
         </Modal>
 
-        <Text>Listagem de Produtos</Text>
+        <Text>Listagem de Doações</Text>
         <SafeAreaView>
           <FlatList
             data={this.state.data}
