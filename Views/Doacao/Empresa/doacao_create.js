@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Button, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import {Picker} from '@react-native-picker/picker';
+import DatePicker from 'react-native-datepicker';
 
 export default class DoacaoCreate extends React.Component {
   constructor(props) {
@@ -22,6 +23,9 @@ export default class DoacaoCreate extends React.Component {
       validade: '',
       cidade: '',
       endereco_id: '',
+
+      date: new Date(),
+      minDate: new Date(),
     };
     this.redirect = this.redirect.bind(this);
     this.listEndereco = this.listEndereco.bind(this);
@@ -91,16 +95,9 @@ export default class DoacaoCreate extends React.Component {
           value={this.state.nome}></TextInput>
 
         <Picker onValueChange={value => this.setState({unidade_medida: value})}>
-        <Picker.Item
-              label="Selecione"
-              value=""
-            />
+          <Picker.Item label="Selecione" value="" />
           {this.state.arrayMedida.map((item, key) => (
-            <Picker.Item
-              label={item[0]}
-              value={item[1]}
-              key={key}
-            />
+            <Picker.Item label={item[0]} value={item[1]} key={key} />
           ))}
         </Picker>
 
@@ -112,6 +109,20 @@ export default class DoacaoCreate extends React.Component {
           placeholder="Válidade"
           onChangeText={value => this.setState({validade: value})}
           value={this.state.validade}></TextInput>
+
+        <DatePicker
+          date={this.state.date}
+          mode="date"
+          placeholder="select date"
+          format="YYYY-MM-DD"
+          minDate={this.state.minDate}
+          maxDate="2025-12-31"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          onDateChange={date => {
+            this.setState({validade: date});
+          }}
+        />
 
         <Picker onValueChange={value => this.setState({endereco_id: value})}>
           {this.state.data.map((item, key) => (
