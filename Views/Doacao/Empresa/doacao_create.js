@@ -63,7 +63,7 @@ export default class DoacaoCreate extends React.Component {
       redirect: 'follow',
     };
 
-    fetch('http://192.168.1.74:8000/api/user/doacao', requestOptions)
+    fetch('http://192.168.1.4:8000/api/user/doacao', requestOptions)
       .then(response => response.json())
       .then(result => alert(result.msg))
       .catch(error => console.log('error', error));
@@ -76,7 +76,7 @@ export default class DoacaoCreate extends React.Component {
     };
 
     fetch(
-      'http://192.168.1.74:8000/api/user/endereco/' + this.state.user_id,
+      'http://192.168.1.4:8000/api/user/endereco/' + this.state.user_id,
       requestOptions,
     )
       .then(response => response.json())

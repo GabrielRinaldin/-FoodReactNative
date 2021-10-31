@@ -33,7 +33,7 @@ export default class ChecaUserTipo extends React.Component {
       redirect: 'follow',
     };
 
-    fetch('http://192.168.1.74:8000/api/me', requestOptions)
+    fetch('http://192.168.1.4:8000/api/me', requestOptions)
       .then(response => response.json())
       .then(response => {
         this.setState({user: response});
@@ -51,7 +51,7 @@ export default class ChecaUserTipo extends React.Component {
             user_id: this.state.user.id,
           });
         }
-        if (this.state.user.tipo_usuario == 'comun') {
+        if (this.state.user.tipo_usuario == 'comum') {
           this.props.navigation.navigate('LogadoUsuario', {
             token: this.props.route.params.token,
             user_id: this.state.user.id,

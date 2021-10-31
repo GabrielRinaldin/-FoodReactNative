@@ -9,6 +9,7 @@ import EnderecoCreate from './Views/Endereco/endereco_create';
 import EnderecoList from './Views/Endereco/endereco_list';
 import DoacaoCreate from './Views/Doacao/Empresa/doacao_create';
 import DoacaoList from './Views/Doacao/Empresa/doacao_list';
+import DoacaoEdit from './Views/Doacao/Empresa/doacao_edit';
 import Logado from './Views/UsuarioEmpresa/logado';
 import LogadoUsuario from './Views/UsuarioComum/logado_usuario';
 import ChecaUserTipo from './Views/Auth/checa_user_tipo';
@@ -46,6 +47,7 @@ function App() {
         <Stack.Screen name="DoacaoCreate" component={DoacaoCreate} />
         <Stack.Screen name="DoacaoList" component={DoacaoList} />
         <Stack.Screen name="ChecaUserTipo" component={ChecaUserTipo} />
+        <Stack.Screen name="DoacaoEdit" component={DoacaoEdit} />
       </Stack.Navigator>
     </NavigationContainer>
   );
