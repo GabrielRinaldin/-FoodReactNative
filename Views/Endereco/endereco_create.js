@@ -72,7 +72,7 @@ export default class EnderecoCreate extends React.Component {
       redirect: 'follow',
     };
 
-    fetch('http://192.168.1.74:8000/api/user/endereco', requestOptions)
+    fetch('http://192.168.1.4:8000/api/user/endereco', requestOptions)
       .then(response => response.json())
       .then(result => alert(result.msg))
       // .then(() =>

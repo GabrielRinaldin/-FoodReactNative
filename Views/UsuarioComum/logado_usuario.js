@@ -56,7 +56,7 @@ export default class LogadoUsuario extends React.Component {
       redirect: 'follow',
     };
 
-    fetch('http://192.168.1.74:8000/api/me', requestOptions)
+    fetch('http://192.168.1.4:8000/api/me', requestOptions)
       .then(response => response.json())
       .then(response => {
         this.setState({user: response});
@@ -71,7 +71,7 @@ export default class LogadoUsuario extends React.Component {
     };
 
     fetch(
-      'http://192.168.1.74:8000/api/doacao/',
+      'http://192.168.1.4:8000/api/doacao/',
       requestOptions,
     )
       .then(response => response.json())

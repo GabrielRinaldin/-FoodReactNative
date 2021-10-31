@@ -39,7 +39,7 @@ export default class EnderecoList extends React.Component {
     };
 
     fetch(
-      'http://192.168.1.74:8000/api/user/endereco/' + this.state.user_id,
+      'http://192.168.1.4:8000/api/user/endereco/' + this.state.user_id,
       requestOptions,
     )
       .then(response => response.json())
@@ -69,7 +69,7 @@ export default class EnderecoList extends React.Component {
       redirect: 'follow',
     };
 
-    fetch('http://192.168.1.74:8000/api/user/endereco/' + key, requestOptions)
+    fetch('http://192.168.1.4:8000/api/user/endereco/' + key, requestOptions)
       .then(response => response.json())
       .then(this.listaEnderecos)
       .then(this.setState({visible: false}))
@@ -83,7 +83,7 @@ export default class EnderecoList extends React.Component {
       redirect: 'follow',
     };
 
-    fetch('http://192.168.1.74:8000/api/user/endereco/' + key, requestOptions)
+    fetch('http://192.168.1.4:8000/api/user/endereco/' + key, requestOptions)
       .then(response => response.json())
       .then(this.listaEnderecos)
       .then(alert('Deletado com sucesso'))

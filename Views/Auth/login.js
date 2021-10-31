@@ -21,7 +21,7 @@ export default class Login extends React.Component {
     };
 
     fetch(
-      'http://192.168.1.74:8000/api/auth/login?email=' +
+      'http://192.168.1.4:8000/api/auth/login?email=' +
         this.state.email +
         '&password=' +
         this.state.password,

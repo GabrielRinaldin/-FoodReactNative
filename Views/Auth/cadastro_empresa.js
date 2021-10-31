@@ -29,7 +29,7 @@ export default class CadastroEmpresa extends React.Component {
     };
 
     fetch(
-      'http://192.168.1.74:8000/api/auth/register?nome=' +
+      'http://192.168.1.4:8000/api/auth/register?nome=' +
         this.state.name +
         '&password=' +
         this.state.password +
