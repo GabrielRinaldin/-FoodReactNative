@@ -13,7 +13,7 @@ import DoacaoEdit from './Views/Doacao/Empresa/doacao_edit';
 import Logado from './Views/UsuarioEmpresa/logado';
 import LogadoUsuario from './Views/UsuarioComum/logado_usuario';
 import ChecaUserTipo from './Views/Auth/checa_user_tipo';
-
+import GraficoQuilos from './Views/Graficos/grafico_quilos';
 
 function Home({navigation}) {
   return (
@@ -48,6 +48,7 @@ function App() {
         <Stack.Screen name="DoacaoList" component={DoacaoList} />
         <Stack.Screen name="ChecaUserTipo" component={ChecaUserTipo} />
         <Stack.Screen name="DoacaoEdit" component={DoacaoEdit} />
+        <Stack.Screen name="GraficoQuilos" component={GraficoQuilos} />
       </Stack.Navigator>
     </NavigationContainer>
   );

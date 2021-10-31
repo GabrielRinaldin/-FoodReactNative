@@ -25,6 +25,8 @@ export default class DoacaoEdit extends React.Component {
       ],
 
       visible: false,
+      doacao_id: '',
+      doacao_nome: '',
       status: '',
     };
     this.listaDoacoes = this.listaDoacoes.bind(this);
@@ -55,9 +57,13 @@ export default class DoacaoEdit extends React.Component {
       .catch(error => console.log('error', error));
   }
 
-  async updateDoacao(key) {
-    console.log(this.state.status);
-
+  async updateDoacao() {
+    if (this.state.status == '') {
+      return alert(
+        'Marque a caixa de seleção para confirmar ou volte para cancelar a operação',
+      );
+    }
+    console.log(this.state.doacao_id);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
 
@@ -73,7 +79,8 @@ export default class DoacaoEdit extends React.Component {
     };
 
     fetch(
-      'http://192.168.1.4:8000/api/user/doacoes-realizada/edit?id=' + key,
+      'http://192.168.1.4:8000/api/user/doacoes-realizada/edit?id=' +
+        this.state.doacao_id,
       requestOptions,
     )
       .then(response => response.json())
@@ -93,7 +100,9 @@ export default class DoacaoEdit extends React.Component {
             data={this.state.data}
             renderItem={({item}) => (
               <View>
-                <Text>recebedor: {item.recebedor_nome}</Text>
+                <Text>
+                  recebedor: {item.id} {item.recebedor_nome}
+                </Text>
                 <Text>alimento doando: {item.nome}</Text>
                 <Text>
                   quantidade: {item.quantidade} {item.unidade_medida}
@@ -103,6 +112,8 @@ export default class DoacaoEdit extends React.Component {
                   title={'Confirmar doação ' + item.nome}
                   onPress={() =>
                     this.setState({
+                      doacao_id: item.id,
+                      doacao_nome: item.nome,
                       visible: true,
                     })
                   }
@@ -114,14 +125,20 @@ export default class DoacaoEdit extends React.Component {
                     transparent={false}
                     visible={this.state.visible}
                     onRequestClose={() => {
-                      this.setState({visible: false});
+                      this.setState({
+                        visible: false,
+                      });
                     }}>
                     <View>
                       <BouncyCheckbox
                         size={25}
                         fillColor="green"
                         unfillColor="#FFFFFF"
-                        text="Custom Checkbox"
+                        text={
+                          'Confirmar que o alimento ' +
+                          this.state.doacao_nome +
+                          ' foi entregue?'
+                        }
                         iconStyle={{borderColor: 'green'}}
                         textStyle={{fontFamily: 'JosefinSans-Regular'}}
                         onPress={() => {
@@ -131,7 +148,7 @@ export default class DoacaoEdit extends React.Component {
 
                       <Button
                         title="Confirmar"
-                        onPress={() => this.updateDoacao(item.id)}
+                        onPress={() => this.updateDoacao()}
                       />
                       <Button
                         title="Fechar"

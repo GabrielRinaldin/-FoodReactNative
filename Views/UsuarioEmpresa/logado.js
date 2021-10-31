@@ -119,6 +119,15 @@ export default class Logado extends React.Component {
                 })
               }
             />
+             <Button
+              title="Analisar gráficos"
+              onPress={() =>
+                this.props.navigation.navigate('GraficoQuilos', {
+                  token: this.props.route.params.token,
+                  user_id: this.state.user.id,
+                })
+              }
+            />
           </View>
         )}
       </View>
