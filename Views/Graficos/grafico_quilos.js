@@ -1,20 +1,26 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {View} from 'react-native';
+import {BarChart, Grid, XAxis, YAxis} from 'react-native-svg-charts';
+import {Text} from 'react-native-svg';
 export default class GraficoQuilos extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       token: props.route.params.token,
       user: [],
+      data: [],
     };
     this.redirect = this.redirect.bind(this);
     this.exit = this.exit.bind(this);
     this.getUser = this.getUser.bind(this);
+    this.getDoacoesQuantidadeUnidade =
+      this.getDoacoesQuantidadeUnidade.bind(this);
   }
 
   componentDidMount() {
     this.redirect();
     this.getUser();
+    this.getDoacoesQuantidadeUnidade();
   }
   redirect() {
     if (this.state.token == null) {
@@ -38,7 +44,6 @@ export default class GraficoQuilos extends React.Component {
       requestOptions,
     )
       .then(response => response.text())
-      .then(result => console.log(result))
       .then(this.props.navigation.navigate('Login'))
       .catch(error => console.log('error', error));
   }
@@ -61,26 +66,79 @@ export default class GraficoQuilos extends React.Component {
       .catch(error => console.log('error', error));
   }
 
-  render() {
-    return (
-      <View>
-        <Text>Id#: {this.state.user.id}</Text>
-        <Text>Nome: {this.state.user.nome}</Text>
-        <Text>Email: {this.state.user.email}</Text>
-        <Text>Tipo: {this.state.user.tipo_usuario}</Text>
-        <Text>Celular: {this.state.user.celular}</Text>
+  getDoacoesQuantidadeUnidade() {
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
 
-        <View>
-          <Button
-            title="Analisar gráficos"
-            onPress={() =>
-              this.props.navigation.navigate('GraficoQuilos', {
-                token: this.props.route.params.token,
-                user_id: this.state.user.id,
-              })
-            }
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow',
+    };
+
+    fetch(
+      'http://192.168.1.4:8000/api/doacoes-realizada/unidade/',
+      requestOptions,
+    )
+      .then(response => response.json())
+      .then(result => {
+        this.setState({data: result});
+      })
+      .catch(error => console.log('error', error));
+  }
+
+  render() {
+    const dataArray = this.state.data.map(function (item) {
+      return {
+        value: item.quantidade_total,
+        label: item.nome,
+      };
+    });
+
+    const data = [];
+    dataArray.forEach(item => {
+      data.push(item.value);
+    });
+
+    const labels = [];
+    dataArray.forEach(item => {
+      labels.push(item.label);
+    });
+
+    const CUT_OFF = 20;
+    const Labels = ({x, y, bandwidth, data}) =>
+      data.map((value, index) => (
+        <Text
+          key={index}
+          x={x(index) + bandwidth / 2}
+          y={value < CUT_OFF ? y(value) - 10 : y(value) + 15}
+          fontSize={14}
+          fill={value >= CUT_OFF ? 'white' : 'black'}
+          alignmentBaseline={'middle'}
+          textAnchor={'middle'}>
+          {value + " Unidades"} 
+        </Text>
+      ));
+
+    return (
+      <View style={{height: 200}}>
+        <BarChart
+          style={{flex: 1}}
+          data={data}
+          svg={{fill: 'rgba(134, 65, 244, 0.8)'}}
+          contentInset={{top: 40, bottom: 10}}
+          spacing={0.2}
+          gridMin={0}>
+          <Grid direction={Grid.Direction.HORIZONTAL} />
+          <Labels />
+          <XAxis
+            style={{marginHorizontal: -10, height: 30}}
+            data={data}
+            formatLabel={(value, index) => index}
+            contentInset={{left: 10, right: 10}}
+            svg={{fontSize: 10, fill: 'grey'}}
           />
-        </View>
+        </BarChart>
       </View>
     );
   }
