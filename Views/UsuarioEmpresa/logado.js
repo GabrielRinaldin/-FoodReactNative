@@ -1,5 +1,7 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
+import {Button} from 'react-native-elements';
+
 
 export default class Logado extends React.Component {
   constructor(props) {
@@ -7,6 +9,7 @@ export default class Logado extends React.Component {
     this.state = {
       token: props.route.params.token,
       user: [],
+
     };
     this.redirect = this.redirect.bind(this);
     this.exit = this.exit.bind(this);
@@ -64,16 +67,17 @@ export default class Logado extends React.Component {
 
   render() {
     return (
-      <View>
-        <Text>Id#: {this.state.user.id}</Text>
-        <Text>Nome: {this.state.user.nome}</Text>
-        <Text>Email: {this.state.user.email}</Text>
-        <Text>Tipo: {this.state.user.tipo_usuario}</Text>
-        <Text>Celular: {this.state.user.celular}</Text>
+      <View style={style.view}>
+        <Text style={style.text}>ID: {this.state.user.id}</Text>
+        <Text style={style.text2}>NOME: {this.state.user.nome}</Text>
+        {/* <Text style={style.text}>EMAIL: {this.state.user.email}</Text>
+        <Text style={style.text}>Tipo: {this.state.user.tipo_usuario}</Text>
+        <Text style={style.text}>Celular: {this.state.user.celular}</Text> */}
 
         {this.state.user.tipo_usuario == 'empresa' && (
-          <View>
+          <View style={style.view}>
             <Button
+              buttonStyle={style.button}
               title="Cadastrar um ponto de coleta"
               onPress={() =>
                 this.props.navigation.navigate('EnderecoCreate', {
@@ -83,6 +87,7 @@ export default class Logado extends React.Component {
               }
             />
             <Button
+              buttonStyle={style.button}
               title="Gerenciar meus pontos de coleta"
               onPress={() =>
                 this.props.navigation.navigate('EnderecoList', {
@@ -93,6 +98,7 @@ export default class Logado extends React.Component {
             />
 
             <Button
+            buttonStyle={style.button}
               title="Criar Doação"
               onPress={() =>
                 this.props.navigation.navigate('DoacaoCreate', {
@@ -102,6 +108,7 @@ export default class Logado extends React.Component {
               }
             />
              <Button
+             buttonStyle={style.button}
               title="Gerenciar Doações"
               onPress={() =>
                 this.props.navigation.navigate('DoacaoList', {
@@ -111,6 +118,7 @@ export default class Logado extends React.Component {
               }
             />
               <Button
+              buttonStyle={style.button}
               title="Gerenciar Doações Em espera"
               onPress={() =>
                 this.props.navigation.navigate('DoacaoEdit', {
@@ -120,9 +128,10 @@ export default class Logado extends React.Component {
               }
             />
              <Button
+             buttonStyle={style.button}
               title="Analisar gráficos"
               onPress={() =>
-                this.props.navigation.navigate('GraficoQuilos', {
+                this.props.navigation.navigate('Grafico', {
                   token: this.props.route.params.token,
                   user_id: this.state.user.id,
                 })
@@ -134,3 +143,43 @@ export default class Logado extends React.Component {
     );
   }
 }
+
+const style = StyleSheet.create({
+  view: {
+    height: '100%',
+    width: '100%',
+    flex: 1,
+    position: 'relative',
+    backgroundColor: '#E57C2F'
+  },
+  text: {
+  alignItems: 'center',
+  justifyContent: 'center',
+  fontSize: 16,
+  marginHorizontal: 20,
+  marginTop: 20,
+  marginBottom: 20,
+  color: '#FFFFFF'
+  },
+  text2: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 16,
+    marginHorizontal: 20,
+    marginBottom: 20,
+    marginBottom: 20,
+    color: '#FFFFFF'
+    },
+  button:{
+    backgroundColor:'#E57C2F',
+    borderRadius:30,
+    borderWidth:2,
+    borderColor:'#FFFFFF',
+    textAlign:'center',
+    marginBottom:7,
+    marginHorizontal: 80,
+    marginVertical: 20,
+    height: 50,
+    width: 260,
+  },
+});

@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, SafeAreaView, Text, Button} from 'react-native';
+import {StyleSheet, View, SafeAreaView, Text,} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
+import {Button} from 'react-native-elements';
+
 
 export default class Login extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -39,18 +42,67 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={style.view}>
         <Text>{this.state.msg}</Text>
-        <Text>Login</Text>
+        <Text style={style.text}>Email</Text>
         <TextInput
-          placeholder="Email"
-          onChangeText={value => this.setState({email: value})}></TextInput>
+        onChangeText={value => this.setState({email: value})}
+        style={style.input1} placeholderTextColor='#FFFFFF'
+      />
+        <Text style={style.text2}>Senha</Text>
         <TextInput
-          placeholder="Senha"
-          onChangeText={value => this.setState({password: value})}
-          secureTextEntry={true}></TextInput>
-        <Button title="Entrar" onPress={this.login}></Button>
+        onChangeText={value => this.setState({password: value})}
+        style={style.input2}
+        placeholderTextColor='#FFFFFF'
+      />
+        <Button buttonStyle={style.button} title="Entrar" onPress={this.login}></Button>
       </View>
     );
   }
 }
+
+
+
+const style = StyleSheet.create({
+  view: {
+    backgroundColor: '#E57C2F',
+    width: '100%',
+    height: '100%',
+  },
+    input1: {
+    height: 40,
+    margin: 12,
+    borderBottomWidth: 1,
+    borderColor:'#FFFFFF',
+    marginHorizontal: 50,
+  },
+  input2: {
+    height: 40,
+    margin: 12,
+    borderBottomWidth: 1,
+    borderColor:'#FFFFFF',
+    marginHorizontal: 50,
+    
+  },
+  button:{
+    backgroundColor:'#E57C2F',
+    width:250,
+    borderRadius:30,
+    borderWidth:2,
+    borderColor:'#FFFFFF',
+    textAlign:'center',
+    marginBottom:7,
+    marginHorizontal: 80,
+    marginVertical: 20,
+  },
+  text: {
+    marginHorizontal: 50,
+    marginTop: 160,
+    color: '#FFFFFF'
+  },
+  text2: {
+    marginHorizontal: 50,
+    marginTop: 10,
+    color: '#FFFFFF'
+  }
+});

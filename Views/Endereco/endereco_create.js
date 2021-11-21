@@ -1,6 +1,7 @@
 import React from 'react';
-import {Button, View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
+import {Button} from 'react-native-elements';
 
 export default class EnderecoCreate extends React.Component {
   constructor(props) {
@@ -86,34 +87,75 @@ export default class EnderecoCreate extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={style.view}>
         <TextInput
+          style={style.input2}
           placeholder="Estado"
+          placeholderTextColor='#FFFFFF'
           onChangeText={value => this.setState({estado: value})}
           value={this.state.estado}></TextInput>
         <TextInput
+          style={style.input2}
           placeholder="Cidade"
+          placeholderTextColor='#FFFFFF'
           onChangeText={value => this.setState({cidade: value})}
           value={this.state.cidade}></TextInput>
         <TextInput
+          style={style.input2}
           placeholder="Bairro"
+          placeholderTextColor='#FFFFFF'
           onChangeText={value => this.setState({bairro: value})}
           value={this.state.bairro}></TextInput>
         <TextInput
+          style={style.input2}
           placeholder="Logradouro"
+          placeholderTextColor='#FFFFFF'
           onChangeText={value => this.setState({logradouro: value})}
           value={this.state.logradouro}></TextInput>
         <TextInput
+          style={style.input2}
           placeholder="Número"
+          placeholderTextColor='#FFFFFF'
           onChangeText={value => this.setState({numero: value})}
           value={this.state.numero}></TextInput>
         <TextInput
+          style={style.input2}
           placeholder="Complemento"
+          placeholderTextColor='#FFFFFF'
           onChangeText={value => this.setState({complemento: value})}
           value={this.state.complemento}></TextInput>
 
-        <Button title="Cadastrar" onPress={this.cadastrarEndereco}></Button>
+        <Button buttonStyle={style.button} title="Cadastrar" onPress={this.cadastrarEndereco}></Button>
       </View>
     );
   }
 }
+
+const style = StyleSheet.create({
+
+  button:{
+    backgroundColor:'#E57C2F',
+    width:250,
+    borderRadius:30,
+    borderWidth:2,
+    borderColor:'#FFFFFF',
+    textAlign:'center',
+    marginBottom:7,
+    marginHorizontal: 80,
+    marginVertical: 20,
+  },
+  view: {
+    backgroundColor: '#E57C2F',
+    width: '100%',
+    height: '100%',
+  },
+  input2: {
+    height: 40,
+    margin: 12,
+    borderBottomWidth: 1,
+    borderColor:'#FFFFFF',
+    marginHorizontal: 30,
+    
+  },
+
+});

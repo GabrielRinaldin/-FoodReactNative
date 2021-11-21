@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import {Button, View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import {Picker} from '@react-native-picker/picker';
 import DatePicker from 'react-native-datepicker';
+import {Button} from 'react-native-elements';
+
 
 export default class DoacaoCreate extends React.Component {
   constructor(props) {
@@ -88,14 +90,14 @@ export default class DoacaoCreate extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={style.view}>
         <TextInput
           placeholder="Nome"
           onChangeText={value => this.setState({nome: value})}
           value={this.state.nome}></TextInput>
 
-        <Picker onValueChange={value => this.setState({unidade_medida: value})}>
-          <Picker.Item label="Selecione" value="" />
+        <Picker  style={style.selecione} onValueChange={value => this.setState({unidade_medida: value})}>
+          <Picker.Item  label="Selecione" value="" />
           {this.state.arrayMedida.map((item, key) => (
             <Picker.Item label={item[0]} value={item[1]} key={key} />
           ))}
@@ -107,6 +109,7 @@ export default class DoacaoCreate extends React.Component {
           value={this.state.quantidade}></TextInput>
 
         <DatePicker
+        style={style.date}
           mode="date"
           placeholder="selecione o prazo"
           format="YYYY-MM-DD"
@@ -119,18 +122,70 @@ export default class DoacaoCreate extends React.Component {
           }}
         />
 
-        <Picker onValueChange={value => this.setState({endereco_id: value})}>
+        <Picker  style={style.selecione} onValueChange={value => this.setState({endereco_id: value})}>
           {this.state.data.map((item, key) => (
             <Picker.Item
-              label={item.cidade + ' ' + item.logradouro + ' - ' + item.numero}
+              label={item.cidade + ' ' + item.logradouro + ' - ' + item.numero} 
               value={item.id}
               key={key}
             />
           ))}
         </Picker>
 
-        <Button title="Cadastrar" onPress={this.cadastrarDoacao}></Button>
+        <Button buttonStyle={style.button} title="Cadastrar" onPress={this.cadastrarDoacao}></Button>
       </View>
     );
   }
 }
+
+const style = StyleSheet.create({
+  view: {
+    width: '100%',
+    height: '100%',
+    marginHorizontal: 20,
+  },
+    input1: {
+    height: 40,
+    margin: 12,
+    borderBottomWidth: 1,
+    borderColor:'#FFFFFF',
+    marginHorizontal: 50,
+  },
+  input2: {
+    height: 40,
+    margin: 12,
+    borderBottomWidth: 1,
+    borderColor:'#FFFFFF',
+    marginHorizontal: 50,
+    
+  },
+  button:{
+    backgroundColor:'#E57C2F',
+    width:250,
+    borderRadius:30,
+    borderWidth:2,
+    borderColor:'#FFFFFF',
+    textAlign:'center',
+    marginBottom:7,
+    marginHorizontal: 80,
+    marginVertical: 20,
+  },
+  text: {
+    marginHorizontal: 50,
+    marginTop: 160,
+    color: '#FFFFFF'
+  },
+  text2: {
+    marginHorizontal: 50,
+    marginTop: 10,
+    color: '#FFFFFF'
+  },
+  date:{
+    width: 300,
+    marginHorizontal: 45,
+  },
+  selecione:{
+    marginHorizontal: 30,
+    width: 300,
+  }
+});

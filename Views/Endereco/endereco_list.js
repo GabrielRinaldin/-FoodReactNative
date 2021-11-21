@@ -1,6 +1,8 @@
 import React from 'react';
-import {Button, FlatList, SafeAreaView, Text, View, Modal} from 'react-native';
+import {FlatList, SafeAreaView, Text, View, Modal, StyleSheet} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
+import {Button} from 'react-native-elements';
+
 
 export default class EnderecoList extends React.Component {
   constructor(props) {
@@ -92,20 +94,21 @@ export default class EnderecoList extends React.Component {
 
   render() {
     return (
-      <View>
-        <Text>Listagem de Produtos</Text>
+      <View style={style.view}>
+        <Text style={style.text}>Listagem de Produtos</Text>
         <SafeAreaView>
           <FlatList
             data={this.state.data}
             renderItem={({item}) => (
               <View>
-                <Text>Estado: {item.estado}</Text>
-                <Text>Cidade: {item.cidade}</Text>
-                <Text>Bairro: {item.bairro}</Text>
-                <Text>
+                <Text style={style.text}>Estado: {item.estado}</Text>
+                <Text style={style.text}>Cidade: {item.cidade}</Text>
+                <Text style={style.text}>Bairro: {item.bairro}</Text>
+                <Text style={style.text}>
                   Logradouro: {item.logradouro} {item.numero} {item.complemento}{' '}
                 </Text>
                 <Button
+                  buttonStyle={style.button}
                   title="Atualizar"
                   onPress={() =>
                     this.setState({
@@ -120,7 +123,7 @@ export default class EnderecoList extends React.Component {
                     })
                   }
                 />
-                <Button title="Deletar" onPress={() => this.deleta(item.id)} />
+                <Button buttonStyle={style.button} title="Deletar" onPress={() => this.deleta(item.id)} />
 
                 <View>
                   <Modal
@@ -130,7 +133,7 @@ export default class EnderecoList extends React.Component {
                     onRequestClose={() => {
                       this.setState({visible: false});
                     }}>
-                    <View>
+                    <View >
                       <Text>Atualizar Item</Text>
                       <Text>Estado</Text>
                       <TextInput
@@ -172,12 +175,14 @@ export default class EnderecoList extends React.Component {
                         }
                         value={this.state.complemento}></TextInput>
                       <Button
+                        buttonStyle={style.button}
                         title="Atualizar"
                         onPress={() =>
                           this.updateEndereco(this.state.endereco_id)
                         }
                       />
                       <Button
+                        buttonStyle={style.button}
                         title="Fechar"
                         onPress={() => {
                           this.setState({visible: false});
@@ -194,3 +199,35 @@ export default class EnderecoList extends React.Component {
     );
   }
 }
+const style = StyleSheet.create({
+  view: {
+    backgroundColor: '#E57C2F',
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  button:{
+    backgroundColor:'#E57C2F',
+    width:250,
+    borderRadius:30,
+    borderWidth:2,
+    borderColor:'#FFFFFF',
+    textAlign:'center',
+    marginBottom:7,
+    marginHorizontal: 80,
+    marginVertical: 20,
+  },
+  text: {
+    marginHorizontal: 30,
+    marginTop: 10,
+    color: '#FFFFFF'
+  },
+  areaView: {
+    borderWidth: 2,
+    borderColor: '#999999',
+    borderRadius: 30,
+    margin: 20,
+  },
+});

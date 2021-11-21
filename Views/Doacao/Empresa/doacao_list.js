@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import {Button, FlatList, SafeAreaView, Text, View, Modal, TouchableHighlight } from 'react-native';
+import {FlatList, SafeAreaView, Text, View, Modal, TouchableHighlight, StyleSheet } from 'react-native';
+import {Button} from 'react-native-elements';
 
 export default class DoacaoList extends React.Component {
   constructor(props) {
@@ -98,8 +99,8 @@ export default class DoacaoList extends React.Component {
 
   render() {
     return (
-      <View>
-        <Button onPress={() => this.togglePicker()} title={ "Busque pelo status!" } />
+      <View style={style.view}>
+        <Button buttonStyle={style.button} onPress={() => this.togglePicker()} title={ "BUSCAR POR STATUS" } />
 
         <Modal visible={this.state.pickerDisplayed} animationType={"slide"} transparent={true}>
           <View style={{ margin: 20, padding: 20,
@@ -120,22 +121,23 @@ export default class DoacaoList extends React.Component {
           </View>
         </Modal>
 
-        <Text>Listagem de Doações</Text>
-        <SafeAreaView>
+        <Text style={style.textDoacao}>DOAÇÔOES CADASTRADAS</Text>
+        <SafeAreaView style={style.areaView}>
           <FlatList
             data={this.state.data}
             renderItem={({item}) => (
               <View>
-                <Text>nome: {item.nome}</Text>
-                <Text>
-                  quantidade: {item.quantidade} {item.unidade_medida}
+                <Text style={style.text}>NOME: {item.nome}</Text>
+                <Text style={style.text}>
+                  QUANTIDADE: {item.quantidade} {item.unidade_medida}
                 </Text>
-                <Text>status: {item.status}</Text>
-                <Text>validade: {item.validade}</Text>
-                <Text>
-                  endereco: {item.cidade} {item.bairro} {item.logradouro}{' '}
+                <Text style={style.text}>STATUS: {item.status}</Text>
+                <Text style={style.text}>VALIDADE: {item.validade}</Text>
+                <Text style={style.text}> 
+                  ENDEREÇO: {item.cidade} {item.bairro} {item.logradouro}{' '}
                   {item.numero} {item.complemento}
                 </Text>
+                <Text style={style.textDoacao}>__________________________________________________</Text>
               </View>
             )}
           />
@@ -144,3 +146,42 @@ export default class DoacaoList extends React.Component {
     );
   }
 }
+
+const style = StyleSheet.create({
+  view: {
+    backgroundColor: '#F4F4F4',
+    width: '100%',
+    height: '100%',
+  },
+  areaView: {
+    borderWidth: 2,
+    borderColor: '#999999',
+    borderRadius: 30,
+    margin: 20,
+  },
+  button:{
+    backgroundColor:'#E57C2F',
+    width:250,
+    borderRadius:30,
+    borderWidth:2,
+    borderColor:'#FFFFFF',
+    textAlign:'center',
+    marginBottom:20,
+    marginHorizontal: 80,
+    marginVertical: 20,
+  },
+
+  text: {
+    marginVertical: 10,
+    marginHorizontal: 20,
+    marginTop: 10,
+    color: '#757575',
+  },
+  textDoacao: {
+    marginHorizontal: 20,
+    marginTop: 10,
+    color: '#757575',
+    fontWeight: 'bold',
+    textAlign: 'center'
+  }
+});
