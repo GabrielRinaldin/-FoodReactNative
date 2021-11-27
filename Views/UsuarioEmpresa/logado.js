@@ -2,14 +2,12 @@ import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 
-
 export default class Logado extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       token: props.route.params.token,
       user: [],
-
     };
     this.redirect = this.redirect.bind(this);
     this.exit = this.exit.bind(this);
@@ -70,12 +68,20 @@ export default class Logado extends React.Component {
       <View style={style.view}>
         <Text style={style.text}>ID: {this.state.user.id}</Text>
         <Text style={style.text2}>NOME: {this.state.user.nome}</Text>
-        {/* <Text style={style.text}>EMAIL: {this.state.user.email}</Text>
-        <Text style={style.text}>Tipo: {this.state.user.tipo_usuario}</Text>
-        <Text style={style.text}>Celular: {this.state.user.celular}</Text> */}
 
         {this.state.user.tipo_usuario == 'empresa' && (
           <View style={style.view}>
+            <Button
+              buttonStyle={style.button}
+              title="Editar Perfil"
+              onPress={() =>
+                this.props.navigation.navigate('EditPerfil', {
+                  token: this.props.route.params.token,
+                  user_id: this.state.user.id,
+                })
+              }
+            />
+
             <Button
               buttonStyle={style.button}
               title="Cadastrar um ponto de coleta"
@@ -98,7 +104,7 @@ export default class Logado extends React.Component {
             />
 
             <Button
-            buttonStyle={style.button}
+              buttonStyle={style.button}
               title="Criar Doação"
               onPress={() =>
                 this.props.navigation.navigate('DoacaoCreate', {
@@ -107,8 +113,8 @@ export default class Logado extends React.Component {
                 })
               }
             />
-             <Button
-             buttonStyle={style.button}
+            <Button
+              buttonStyle={style.button}
               title="Gerenciar Doações"
               onPress={() =>
                 this.props.navigation.navigate('DoacaoList', {
@@ -117,7 +123,7 @@ export default class Logado extends React.Component {
                 })
               }
             />
-              <Button
+            <Button
               buttonStyle={style.button}
               title="Gerenciar Doações Em espera"
               onPress={() =>
@@ -127,8 +133,8 @@ export default class Logado extends React.Component {
                 })
               }
             />
-             <Button
-             buttonStyle={style.button}
+            <Button
+              buttonStyle={style.button}
               title="Analisar gráficos"
               onPress={() =>
                 this.props.navigation.navigate('Grafico', {
@@ -150,16 +156,16 @@ const style = StyleSheet.create({
     width: '100%',
     flex: 1,
     position: 'relative',
-    backgroundColor: '#E57C2F'
+    backgroundColor: '#E57C2F',
   },
   text: {
-  alignItems: 'center',
-  justifyContent: 'center',
-  fontSize: 16,
-  marginHorizontal: 20,
-  marginTop: 20,
-  marginBottom: 20,
-  color: '#FFFFFF'
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 16,
+    marginHorizontal: 20,
+    marginTop: 20,
+    marginBottom: 20,
+    color: '#FFFFFF',
   },
   text2: {
     alignItems: 'center',
@@ -168,15 +174,15 @@ const style = StyleSheet.create({
     marginHorizontal: 20,
     marginBottom: 20,
     marginBottom: 20,
-    color: '#FFFFFF'
-    },
-  button:{
-    backgroundColor:'#E57C2F',
-    borderRadius:30,
-    borderWidth:2,
-    borderColor:'#FFFFFF',
-    textAlign:'center',
-    marginBottom:7,
+    color: '#FFFFFF',
+  },
+  button: {
+    backgroundColor: '#E57C2F',
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: '#FFFFFF',
+    textAlign: 'center',
+    marginBottom: 7,
     marginHorizontal: 80,
     marginVertical: 20,
     height: 50,

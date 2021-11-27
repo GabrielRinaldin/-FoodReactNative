@@ -11,6 +11,7 @@ export default class DoacaoList extends React.Component {
 
       data: [],
       arrayStatus: [
+        ['Todos', ''],
         ['Disponivel', 'disponivel'],
         ['Retirado', 'retirado'],
         ['Expirado', 'expirado'],
@@ -53,34 +54,6 @@ export default class DoacaoList extends React.Component {
       .catch(error => console.log('error', error));
       
   }
-
-//   async updateDoacao(key) {
-//     var myHeaders = new Headers();
-//     myHeaders.append('Content-Type', 'application/json');
-
-//     var raw = JSON.stringify({
-//       estado: this.state.estado,
-//       cidade: this.state.cidade,
-//       bairro: this.state.bairro,
-//       logradouro: this.state.logradouro,
-//       numero: this.state.numero,
-//       complemento: this.state.complemento,
-//     });
-
-//     var requestOptions = {
-//       method: 'POST',
-//       headers: myHeaders,
-//       body: raw,
-//       redirect: 'follow',
-//     };
-
-//     fetch('http://192.168.1.4:8000/api/user/endereco/' + key, requestOptions)
-//       .then(response => response.json())
-//       .then(this.listaEnderecos)
-//       .then(this.setState({visible: false}))
-//       .then(response => alert(response.msg))
-//       .catch(error => console.log('error', error));
-//   }
 
   setPickerValue(newValue) {
     this.setState({

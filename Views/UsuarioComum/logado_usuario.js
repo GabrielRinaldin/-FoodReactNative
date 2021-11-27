@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {
-  Button,
   FlatList,
   SafeAreaView,
   Text,
@@ -9,6 +8,7 @@ import {
   TextInput,
   TouchableHighlight,
 } from 'react-native';
+import {Button} from 'react-native-elements';
 
 export default class LogadoUsuario extends React.Component {
   constructor(props) {
@@ -128,10 +128,16 @@ export default class LogadoUsuario extends React.Component {
     return (
       <View>
         <Text>Nome: {this.state.user.nome}</Text>
-        <Text>Email: {this.state.user.email}</Text>
-        <Text>Tipo: {this.state.user.tipo_usuario}</Text>
-        <Text>Celular: {this.state.user.celular}</Text>
-
+        <Button
+          title="Editar Perfil"
+          onPress={() =>
+            this.props.navigation.navigate('EditPerfil', {
+              token: this.props.route.params.token,
+              user_id: this.state.user.id,
+            })
+          }
+        />
+        
         <Text>Listagem de Doações Disponivel</Text>
         <SafeAreaView>
           <FlatList
@@ -204,6 +210,15 @@ export default class LogadoUsuario extends React.Component {
             )}
           />
         </SafeAreaView>
+        <Button
+          title="Analisar Empresas Doadoras"
+          onPress={() =>
+            this.props.navigation.navigate('Grafico', {
+              token: this.props.route.params.token,
+              user_id: this.state.user.id,
+            })
+          }
+        />
       </View>
     );
   }

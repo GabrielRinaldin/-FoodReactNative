@@ -70,12 +70,14 @@ export default class CadastroEmpresa extends React.Component {
           value={this.state.celular}
           onChangeText={value => this.setState({celular: value})}></TextInput>
         <TextInput
+         secureTextEntry={true}
           style={style.input1}
           placeholderTextColor='#FFFFFF'
           placeholder="Senha"
           value={this.state.password}
           onChangeText={value => this.setState({password: value})}></TextInput>
         <TextInput
+         secureTextEntry={true}
           style={style.input1}
           placeholderTextColor='#FFFFFF'
           placeholder="Confirme a senha"

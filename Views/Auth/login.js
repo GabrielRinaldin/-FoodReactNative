@@ -51,6 +51,7 @@ export default class Login extends React.Component {
       />
         <Text style={style.text2}>Senha</Text>
         <TextInput
+        secureTextEntry={true}
         onChangeText={value => this.setState({password: value})}
         style={style.input2}
         placeholderTextColor='#FFFFFF'

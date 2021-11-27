@@ -15,6 +15,7 @@ import Logado from './Views/UsuarioEmpresa/logado';
 import LogadoUsuario from './Views/UsuarioComum/logado_usuario';
 import ChecaUserTipo from './Views/Auth/checa_user_tipo';
 import Grafico from './Views/Graficos/grafico';
+import EditPerfil from './Views/Perfil/edit_perfil';
 
 function Home({navigation}) {
   return (
@@ -60,6 +61,7 @@ function App() {
         <Stack.Screen name="ChecaUserTipo" component={ChecaUserTipo} />
         <Stack.Screen name="DoacaoEdit" component={DoacaoEdit} />
         <Stack.Screen name="Grafico" component={Grafico} />
+        <Stack.Screen name="EditPerfil" component={EditPerfil} />
       </Stack.Navigator>
     </NavigationContainer>
   );

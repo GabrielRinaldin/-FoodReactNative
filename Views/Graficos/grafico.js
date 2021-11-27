@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, FlatList, SafeAreaView, StyleSheet} from 'react-native';
+import {
+  View,
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  Text as Texto,
+} from 'react-native';
 import {BarChart, Grid, XAxis, YAxis} from 'react-native-svg-charts';
 import {Text} from 'react-native-svg';
 export default class Grafico extends React.Component {
@@ -29,8 +35,10 @@ export default class Grafico extends React.Component {
 
     this.getDoacoesQuantidadeQuiloLimit5 =
       this.getDoacoesQuantidadeQuiloLimit5.bind(this);
+    this.getDoacoesQuantidadeQuiloAll =
+      this.getDoacoesQuantidadeQuiloAll.bind(this);
 
-    // this.getDoacoesQuantidadeQuiloLimit5All = this.getDoacoesQuantidadeQuiloLimit5All.bind(this);
+    
   }
 
   componentDidMount() {
@@ -39,6 +47,7 @@ export default class Grafico extends React.Component {
     this.getDoacoesQuantidadeUnidadeLimit5();
     this.getDoacoesQuantidadeUnidadeAll();
     this.getDoacoesQuantidadeQuiloLimit5();
+    this.getDoacoesQuantidadeQuiloAll();
   }
   redirect() {
     if (this.state.token == null) {
@@ -147,6 +156,27 @@ export default class Grafico extends React.Component {
       .catch(error => console.log('error', error));
   }
 
+  getDoacoesQuantidadeQuiloAll() {
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow',
+    };
+
+    fetch(
+      'http://192.168.1.4:8000/api/doacoes-realizada/quilos/todos/',
+      requestOptions,
+    )
+      .then(response => response.json())
+      .then(result => {
+        this.setState({dataQuiloAll: result});
+      })
+      .catch(error => console.log('error', error));
+  }
+
   render() {
     const dataArrayUnidadeLimit5 = this.state.dataUnidadeLimit5.map(function (
       item,
@@ -225,6 +255,27 @@ export default class Grafico extends React.Component {
           <Grid direction={Grid.Direction.VERTICAL} />
           <LabelsQuilo />
         </BarChart>
+
+        <FlatList
+          data={this.state.dataUnidadeAll}
+          renderItem={({item}) => (
+            <View>
+              <Texto>
+                Empresa Doadora: {item.nome} {item.quantidade_total} Unidades
+              </Texto>
+            </View>
+          )}
+        />
+        <FlatList
+          data={this.state.dataQuiloAll}
+          renderItem={({item}) => (
+            <View>
+              <Texto>
+                Empresa Doadora: {item.nome} {item.quantidade_total} Quilos
+              </Texto>
+            </View>
+          )}
+        />
       </View>
     );
   }
