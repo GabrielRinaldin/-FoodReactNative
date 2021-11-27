@@ -219,6 +219,15 @@ export default class LogadoUsuario extends React.Component {
             })
           }
         />
+         <Button
+          title="Quem Somos nós"
+          onPress={() =>
+            this.props.navigation.navigate('QuemSomos', {
+              token: this.props.route.params.token,
+              user_id: this.state.user.id,
+            })
+          }
+        />
       </View>
     );
   }
